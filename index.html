@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAUR IMPORTS - Capas e Películas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .text-gold { color: #FACC15; }
+        .bg-gold { background-color: #FACC15; }
+        .border-gold { border-color: #FACC15; }
+        /* Estilização da barra de rolagem */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #111; }
+        ::-webkit-scrollbar-thumb { background: #FACC15; border-radius: 4px; }
+    </style>
+</head>
+<body class="text-white font-sans scroll-smooth relative min-h-screen flex flex-col">
+
+    <div class="fixed inset-0 z-[-1]">
+        <img src="logo loja_2.jpeg" alt="Fundo Leão" class="w-full h-full object-cover">
+        <!-- Camada escura por cima para os textos ficarem legíveis -->
+        <div class="absolute inset-0 bg-black/85 backdrop-blur-[2px]"></div>
+    </div>
+
+    <nav class="p-4 border-b border-gray-800 bg-black/90 sticky top-0 z-40 flex justify-between items-center shadow-lg">
+        <div class="flex items-center gap-3">
+            <img src="logo loja_2.jpeg" alt="Logo Faur" class="h-12 w-12 rounded-full border border-gold object-cover shadow-[0_0_10px_rgba(250,204,21,0.3)]">
+            <div class="text-xl font-bold text-gold tracking-widest uppercase">Faur Imports</div>
+        </div>
+        
+        <button onclick="toggleCart()" class="relative p-2 text-white hover:text-gold transition">
+            <i class="fas fa-shopping-cart text-2xl"></i>
+            <!-- Bolinha de contagem do carrinho -->
+            <span id="cartBadge" class="hidden absolute top-0 right-0 bg-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center transform translate-x-1 -translate-y-1">0</span>
+        </button>
+    </nav>
+
+    <main class="flex-grow py-12 px-6 max-w-7xl mx-auto w-full">
+        
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-white uppercase tracking-widest mb-4 drop-shadow-lg">
+                Catálogo de <span class="text-gold">Produtos</span>
+            </h1>
+            <p class="text-gray-300 text-lg">Selecione os produtos e adicione ao carrinho para finalizar via WhatsApp.</p>
+        </div>
+
+        <!-- SEÇÃO DE CELULARES -->
+        <div id="celulares" class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-white uppercase tracking-widest mb-4"><span class="text-gold">Celulares</span> & Smartphones</h2>
+            <p class="text-gray-300">Aparelhos Apple, Xiaomi e muito mais.</p>
+        </div>
+
+        <div class="max-w-7xl mx-auto mb-20 bg-black/60 border border-gray-800 rounded-2xl p-12 text-center backdrop-blur-md shadow-xl flex flex-col items-center">
+            <i class="fas fa-boxes text-6xl text-gray-500 mb-6"></i>
+            <h3 class="text-2xl font-bold text-white mb-3 uppercase tracking-wide">Atualizando Estoque</h3>
+            <p class="text-gray-400 max-w-2xl mx-auto mb-8 text-lg">Estamos preparando uma vitrine incrível com os melhores smartphones do mercado. Enquanto atualizamos nosso site, chame no WhatsApp para consultar os modelos disponíveis a pronta entrega ou sob encomenda!</p>
+            <a href="https://wa.me/5511911068459?text=Ol%C3%A1!%20Gostaria%20de%20saber%20sobre%20a%20disponibilidade%20de%20celulares." target="_blank" class="border-2 border-gold text-gold font-bold py-3 px-8 rounded-xl hover:bg-gold hover:text-black transition uppercase tracking-wide flex items-center gap-2">
+                <i class="fab fa-whatsapp text-xl"></i> Consultar Aparelhos
+            </a>
+        </div>
+
+        <!-- SEÇÃO DE CAPAS (Início dos acessórios) -->
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-white uppercase tracking-widest mb-4">Capas & <span class="text-gold">Proteção</span></h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            
+            <!-- PRODUTO 1: Capa Space -->
+            <div class="bg-black/60 border border-gray-800 rounded-2xl p-5 flex flex-col hover:border-gold transition shadow-xl backdrop-blur-md">
+                <img src="https://images.unsplash.com/photo-1592899677958-7f2127260714?auto=format&fit=crop&q=80&w=600" alt="Capa Space" class="h-56 w-full object-cover rounded-xl mb-4 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-1 uppercase tracking-wide">Capa Space</h3>
+                <p class="text-gray-400 text-sm mb-4">Acrílico transparente de alta resistência. Não amarela e exibe a beleza do aparelho.</p>
+                <div class="mt-auto">
+                    <p class="text-gold font-bold text-2xl mb-3">R$ 45,00</p>
+                    <select id="model-space" class="w-full bg-gray-900 border border-gray-700 text-white rounded-lg p-3 mb-4 outline-none focus:border-gold">
+                        <option value="">Selecione o modelo do iPhone</option>
+                        <option value="iPhone 11">iPhone 11</option>
+                        <option value="iPhone 12">iPhone 12</option>
+                        <option value="iPhone 13">iPhone 13</option>
+                        <option value="iPhone 14">iPhone 14</option>
+                        <option value="iPhone 15">iPhone 15</option>
+                        <option value="iPhone 16">iPhone 16</option>
+                        <option value="iPhone 17">iPhone 17</option>
+                    </select>
+                    <button onclick="addToCart('Capa Space', 45.00, 'model-space')" class="w-full border-2 border-gold text-gold font-bold py-3 rounded-xl hover:bg-gold hover:text-black transition uppercase tracking-wide">
+                        Adicionar <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- PRODUTO 2: Capa de Couro -->
+            <div class="bg-black/60 border border-gray-800 rounded-2xl p-5 flex flex-col hover:border-gold transition shadow-xl backdrop-blur-md">
+                <img src="https://images.unsplash.com/photo-1601593346740-925612772716?auto=format&fit=crop&q=80&w=600" alt="Capa de Couro" class="h-56 w-full object-cover rounded-xl mb-4 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-1 uppercase tracking-wide">Capa de Couro</h3>
+                <p class="text-gray-400 text-sm mb-4">Elegância e sofisticação máxima. Toque premium com proteção interna aveludada.</p>
+                <div class="mt-auto">
+                    <p class="text-gold font-bold text-2xl mb-3">R$ 85,00</p>
+                    <select id="model-couro" class="w-full bg-gray-900 border border-gray-700 text-white rounded-lg p-3 mb-4 outline-none focus:border-gold">
+                        <option value="">Selecione o modelo do iPhone</option>
+                        <option value="iPhone 11">iPhone 11</option>
+                        <option value="iPhone 12">iPhone 12</option>
+                        <option value="iPhone 13">iPhone 13</option>
+                        <option value="iPhone 14">iPhone 14</option>
+                        <option value="iPhone 15">iPhone 15</option>
+                        <option value="iPhone 16">iPhone 16</option>
+                        <option value="iPhone 17">iPhone 17</option>
+                    </select>
+                    <button onclick="addToCart('Capa de Couro', 85.00, 'model-couro')" class="w-full border-2 border-gold text-gold font-bold py-3 rounded-xl hover:bg-gold hover:text-black transition uppercase tracking-wide">
+                        Adicionar <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- PRODUTO 3: Capa de Silicone -->
+            <div class="bg-black/60 border border-gray-800 rounded-2xl p-5 flex flex-col hover:border-gold transition shadow-xl backdrop-blur-md">
+                <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&q=80&w=600" alt="Capa de Silicone" class="h-56 w-full object-cover rounded-xl mb-4 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-1 uppercase tracking-wide">Capa de Silicone</h3>
+                <p class="text-gray-400 text-sm mb-4">A clássica. Exterior suave ao toque, diversas cores e interior em microfibra.</p>
+                <div class="mt-auto">
+                    <p class="text-gold font-bold text-2xl mb-3">R$ 65,00</p>
+                    <select id="model-silicone" class="w-full bg-gray-900 border border-gray-700 text-white rounded-lg p-3 mb-4 outline-none focus:border-gold">
+                        <option value="">Selecione o modelo do iPhone</option>
+                        <option value="iPhone 11">iPhone 11</option>
+                        <option value="iPhone 12">iPhone 12</option>
+                        <option value="iPhone 13">iPhone 13</option>
+                        <option value="iPhone 14">iPhone 14</option>
+                        <option value="iPhone 15">iPhone 15</option>
+                        <option value="iPhone 16">iPhone 16</option>
+                        <option value="iPhone 17 Pro Max">iPhone 17 Pro Max</option>
+                        <option value="Modelos Pro/Pro Max Antigos (Consulte)">Outros Modelos Pro/Pro Max</option>
+                    </select>
+                    <button onclick="addToCart('Capa de Silicone', 65.00, 'model-silicone')" class="w-full border-2 border-gold text-gold font-bold py-3 rounded-xl hover:bg-gold hover:text-black transition uppercase tracking-wide">
+                        Adicionar <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mb-10 mt-20">
+            <h2 class="text-3xl font-bold text-white uppercase tracking-widest mb-4">Corte a Laser <span class="text-gold">Hidrogel</span></h2>
+            <p class="text-gray-300">Películas cortadas na hora para um encaixe 100% perfeito.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-20">
+            <!-- Imagem da Máquina -->
+            <div class="rounded-2xl overflow-hidden border border-gray-800 shadow-xl hidden md:block">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800" alt="Máquina de Corte Hidrogel" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Produtos Hidrogel -->
+            <div class="flex flex-col gap-6 justify-center">
+                
+                <div class="bg-black/60 border border-gray-800 rounded-2xl p-6 flex justify-between items-center hover:border-gold transition backdrop-blur-md">
+                    <div>
+                        <h3 class="text-xl font-bold text-white uppercase">Película Hidrogel</h3>
+                        <p class="text-gray-400 text-sm mt-1">Transparente. Proteção contra impactos.</p>
+                        <p class="text-gold font-bold text-xl mt-2">R$ 20,00</p>
+                    </div>
+                    <button onclick="addToCart('Película Hidrogel', 20.00, null)" class="bg-gold text-black w-14 h-14 rounded-full flex items-center justify-center text-xl hover:bg-yellow-500 transition shadow-lg">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+
+                <div class="bg-black/60 border border-gray-800 rounded-2xl p-6 flex justify-between items-center hover:border-gold transition backdrop-blur-md">
+                    <div>
+                        <h3 class="text-xl font-bold text-white uppercase">Hidrogel Privacidade</h3>
+                        <p class="text-gray-400 text-sm mt-1">Anti-curioso e alta absorção de impacto.</p>
+                        <p class="text-gold font-bold text-xl mt-2">R$ 30,00</p>
+                    </div>
+                    <button onclick="addToCart('Película Hidrogel Privacidade', 30.00, null)" class="bg-gold text-black w-14 h-14 rounded-full flex items-center justify-center text-xl hover:bg-yellow-500 transition shadow-lg">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO DE CARREGADORES -->
+        <div class="text-center mb-10 mt-20">
+            <h2 class="text-3xl font-bold text-white uppercase tracking-widest mb-4">Carregadores & <span class="text-gold">Cabos</span></h2>
+            <p class="text-gray-300">Carregamento turbo seguro para preservar a saúde da sua bateria.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            
+            <!-- Fonte 20W -->
+            <div class="bg-black/60 border border-gray-800 rounded-2xl p-5 flex flex-col hover:border-gold transition shadow-xl backdrop-blur-md">
+                <img src="https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&q=80&w=600" alt="Fonte Turbo 20W" class="h-56 w-full object-cover rounded-xl mb-4 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-1 uppercase tracking-wide">Fonte Turbo 20W (Tipo-C)</h3>
+                <p class="text-gray-400 text-sm mb-4">Carregamento rápido com tecnologia Power Delivery. Ideal para iPhones e Androids.</p>
+                <div class="mt-auto">
+                    <p class="text-gold font-bold text-2xl mb-3">R$ 89,90</p>
+                    <button onclick="addToCart('Fonte Turbo 20W', 89.90, null)" class="w-full border-2 border-gold text-gold font-bold py-3 rounded-xl hover:bg-gold hover:text-black transition uppercase tracking-wide">
+                        Adicionar <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cabo Lightning -->
+            <div class="bg-black/60 border border-gray-800 rounded-2xl p-5 flex flex-col hover:border-gold transition shadow-xl backdrop-blur-md">
+                <img src="https://images.unsplash.com/photo-1615526675159-e248c3021d3f?auto=format&fit=crop&q=80&w=600" alt="Cabo Lightning" class="h-56 w-full object-cover rounded-xl mb-4 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-1 uppercase tracking-wide">Cabo USB-C / Lightning</h3>
+                <p class="text-gray-400 text-sm mb-4">Cabo reforçado de alta durabilidade para iPhones (até o modelo 14). Suporta carregamento turbo.</p>
+                <div class="mt-auto">
+                    <p class="text-gold font-bold text-2xl mb-3">R$ 59,90</p>
+                    <button onclick="addToCart('Cabo Lightning (Turbo)', 59.90, null)" class="w-full border-2 border-gold text-gold font-bold py-3 rounded-xl hover:bg-gold hover:text-black transition uppercase tracking-wide">
+                        Adicionar <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cabo Tipo C -->
+            <div class="bg-black/60 border border-gray-800 rounded-2xl p-5 flex flex-col hover:border-gold transition shadow-xl backdrop-blur-md">
+                <img src="https://images.unsplash.com/photo-1624823183538-4e8c1483842c?auto=format&fit=crop&q=80&w=600" alt="Cabo Tipo C" class="h-56 w-full object-cover rounded-xl mb-4 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-1 uppercase tracking-wide">Cabo Tipo-C / Tipo-C</h3>
+                <p class="text-gray-400 text-sm mb-4">Essencial para iPhone 15, 16 e 17. Material premium ultra resistente e transferência de dados rápida.</p>
+                <div class="mt-auto">
+                    <p class="text-gold font-bold text-2xl mb-3">R$ 59,90</p>
+                    <button onclick="addToCart('Cabo Tipo-C a Tipo-C', 59.90, null)" class="w-full border-2 border-gold text-gold font-bold py-3 rounded-xl hover:bg-gold hover:text-black transition uppercase tracking-wide">
+                        Adicionar <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO DE SUPORTES VEICULARES -->
+        <div class="text-center mb-10 mt-20">
+            <h2 class="text-3xl font-bold text-white uppercase tracking-widest mb-4">Suportes <span class="text-gold">Veiculares</span></h2>
+            <p class="text-gray-300">Praticidade e segurança para usar o GPS e atender chamadas no trânsito.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 max-w-7xl mx-auto">
+            
+            <!-- Suporte Magnético -->
+            <div class="bg-black/60 border border-gray-800 rounded-2xl p-5 flex flex-col hover:border-gold transition shadow-xl backdrop-blur-md">
+                <img src="https://images.unsplash.com/photo-1627389955800-4740e53a1d95?auto=format&fit=crop&q=80&w=600" alt="Suporte Magnético" class="h-56 w-full object-cover rounded-xl mb-4 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-1 uppercase tracking-wide">Suporte Magnético Minimalista</h3>
+                <p class="text-gray-400 text-sm mb-4">Discreto e super potente. Fixação firme no painel ou na saída de ar sem estragar a estética do seu carro.</p>
+                <div class="mt-auto">
+                    <p class="text-gold font-bold text-2xl mb-3">R$ 49,90</p>
+                    <button onclick="addToCart('Suporte Magnético Minimalista', 49.90, null)" class="w-full border-2 border-gold text-gold font-bold py-3 rounded-xl hover:bg-gold hover:text-black transition uppercase tracking-wide">
+                        Adicionar <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Suporte Articulado -->
+            <div class="bg-black/60 border border-gray-800 rounded-2xl p-5 flex flex-col hover:border-gold transition shadow-xl backdrop-blur-md">
+                <img src="https://images.unsplash.com/photo-1510511233900-1982d92bd235?auto=format&fit=crop&q=80&w=600" alt="Suporte Articulado" class="h-56 w-full object-cover rounded-xl mb-4 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-1 uppercase tracking-wide">Suporte Articulado 360º</h3>
+                <p class="text-gray-400 text-sm mb-4">Braço ajustável e ventosa de alta aderência para o vidro ou painel. Segurança máxima e fácil visualização em qualquer terreno.</p>
+                <div class="mt-auto">
+                    <p class="text-gold font-bold text-2xl mb-3">R$ 69,90</p>
+                    <button onclick="addToCart('Suporte Articulado 360º', 69.90, null)" class="w-full border-2 border-gold text-gold font-bold py-3 rounded-xl hover:bg-gold hover:text-black transition uppercase tracking-wide">
+                        Adicionar <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Suporte MagSafe -->
+            <div class="bg-black/60 border border-gray-800 rounded-2xl p-5 flex flex-col hover:border-gold transition shadow-xl backdrop-blur-md">
+                <img src="https://images.unsplash.com/photo-1605648816738-9cbce3302bc5?auto=format&fit=crop&q=80&w=600" alt="Suporte MagSafe Indução" class="h-56 w-full object-cover rounded-xl mb-4 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-1 uppercase tracking-wide">Suporte MagSafe c/ Indução</h3>
+                <p class="text-gray-400 text-sm mb-4">A tecnologia premium. Fixa o seu iPhone magneticamente e já recarrega a bateria via indução turbo sem plugar cabos no celular.</p>
+                <div class="mt-auto">
+                    <p class="text-gold font-bold text-2xl mb-3">R$ 149,90</p>
+                    <button onclick="addToCart('Suporte MagSafe c/ Indução', 149.90, null)" class="w-full border-2 border-gold text-gold font-bold py-3 rounded-xl hover:bg-gold hover:text-black transition uppercase tracking-wide">
+                        Adicionar <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center mb-10 mt-20">
+            <h2 class="text-3xl font-bold text-white uppercase tracking-widest mb-4">Energia & <span class="text-gold">Power Banks</span></h2>
+            <p class="text-gray-300">Carregadores portáteis de alta capacidade. Nunca fique sem bateria.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 max-w-5xl mx-auto">
+            
+            <!-- Power Bank MagSafe -->
+            <div class="bg-black/60 border border-gray-800 rounded-2xl p-5 flex flex-col hover:border-gold transition shadow-xl backdrop-blur-md">
+                <img src="https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&q=80&w=600" alt="Power Bank MagSafe" class="h-64 w-full object-cover rounded-xl mb-4 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-1 uppercase tracking-wide">Power Bank MagSafe 10.000mAh</h3>
+                <p class="text-gray-400 text-sm mb-4">Fixação magnética perfeita para a traseira do seu iPhone. Carregamento por indução rápido e sem cabos extras.</p>
+                <div class="mt-auto">
+                    <p class="text-gold font-bold text-2xl mb-3">R$ 180,00</p>
+                    <button onclick="addToCart('Power Bank MagSafe 10.000mAh', 180.00, null)" class="w-full border-2 border-gold text-gold font-bold py-3 rounded-xl hover:bg-gold hover:text-black transition uppercase tracking-wide">
+                        Adicionar <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Power Bank Turbo -->
+            <div class="bg-black/60 border border-gray-800 rounded-2xl p-5 flex flex-col hover:border-gold transition shadow-xl backdrop-blur-md">
+                <img src="https://images.unsplash.com/photo-1585338107529-13afc5f02586?auto=format&fit=crop&q=80&w=600" alt="Power Bank Turbo" class="h-64 w-full object-cover rounded-xl mb-4 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-1 uppercase tracking-wide">Power Bank Ultra 20.000mAh</h3>
+                <p class="text-gray-400 text-sm mb-4">Alta capacidade para várias recargas completas. Possui múltiplas saídas (USB-C e USB-A) para carregar de tudo.</p>
+                <div class="mt-auto">
+                    <p class="text-gold font-bold text-2xl mb-3">R$ 220,00</p>
+                    <button onclick="addToCart('Power Bank Ultra 20.000mAh', 220.00, null)" class="w-full border-2 border-gold text-gold font-bold py-3 rounded-xl hover:bg-gold hover:text-black transition uppercase tracking-wide">
+                        Adicionar <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- SEÇÃO DE CAIXAS DE SOM -->
+        <div class="text-center mb-10 mt-10">
+            <h2 class="text-3xl font-bold text-white uppercase tracking-widest mb-4">Áudio & <span class="text-gold">Caixas de Som</span></h2>
+            <p class="text-gray-300">Som potente, graves profundos e qualidade premium para todos os momentos.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            
+            <!-- Caixa Pequena -->
+            <div class="bg-black/60 border border-gray-800 rounded-2xl p-5 flex flex-col hover:border-gold transition shadow-xl backdrop-blur-md">
+                <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&q=80&w=600" alt="Caixa de Som Pequena" class="h-56 w-full object-cover rounded-xl mb-4 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-1 uppercase tracking-wide">Caixa de Som Mini Portátil</h3>
+                <p class="text-gray-400 text-sm mb-4">Pequena no tamanho, gigante no som. Ideal para levar na mochila, com alça de transporte e bateria de longa duração.</p>
+                <div class="mt-auto">
+                    <p class="text-gold font-bold text-2xl mb-3">R$ 89,90</p>
+                    <button onclick="addToCart('Caixa de Som Mini Portátil', 89.90, null)" class="w-full border-2 border-gold text-gold font-bold py-3 rounded-xl hover:bg-gold hover:text-black transition uppercase tracking-wide">
+                        Adicionar <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Caixa Média -->
+            <div class="bg-black/60 border border-gray-800 rounded-2xl p-5 flex flex-col hover:border-gold transition shadow-xl backdrop-blur-md">
+                <img src="https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&q=80&w=600" alt="Caixa de Som Média" class="h-56 w-full object-cover rounded-xl mb-4 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-1 uppercase tracking-wide">Caixa de Som Bluetooth Média</h3>
+                <p class="text-gray-400 text-sm mb-4">O equilíbrio perfeito. Graves fortes, resistente a respingos d'água e perfeita para animar resenhas e churrascos.</p>
+                <div class="mt-auto">
+                    <p class="text-gold font-bold text-2xl mb-3">R$ 159,90</p>
+                    <button onclick="addToCart('Caixa de Som Média', 159.90, null)" class="w-full border-2 border-gold text-gold font-bold py-3 rounded-xl hover:bg-gold hover:text-black transition uppercase tracking-wide">
+                        Adicionar <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Caixa Grande -->
+            <div class="bg-black/60 border border-gray-800 rounded-2xl p-5 flex flex-col hover:border-gold transition shadow-xl backdrop-blur-md">
+                <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?auto=format&fit=crop&q=80&w=600" alt="Caixa de Som Grande" class="h-56 w-full object-cover rounded-xl mb-4 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-1 uppercase tracking-wide">Caixa de Som Party Grande</h3>
+                <p class="text-gray-400 text-sm mb-4">Para quem quer fazer a festa. Som extremo, luzes de LED integradas e conexão para microfone.</p>
+                <div class="mt-auto">
+                    <p class="text-gold font-bold text-2xl mb-3">R$ 499,90</p>
+                    <button onclick="addToCart('Caixa de Som Party Grande', 499.90, null)" class="w-full border-2 border-gold text-gold font-bold py-3 rounded-xl hover:bg-gold hover:text-black transition uppercase tracking-wide">
+                        Adicionar <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SEÇÃO DE FONES DE OUVIDO -->
+        <div class="text-center mb-10 mt-10">
+            <h2 class="text-3xl font-bold text-white uppercase tracking-widest mb-4">Fones de <span class="text-gold">Ouvido</span></h2>
+            <p class="text-gray-300">Qualidade sonora imersiva, cancelamento de ruído e conforto para o seu dia a dia.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 max-w-7xl mx-auto">
+            
+            <!-- Fone TWS Pro -->
+            <div class="bg-black/60 border border-gray-800 rounded-2xl p-5 flex flex-col hover:border-gold transition shadow-xl backdrop-blur-md">
+                <img src="https://images.unsplash.com/photo-1606220588913-b3aecb4b27f2?auto=format&fit=crop&q=80&w=600" alt="Fone TWS Premium Pro" class="h-56 w-full object-cover rounded-xl mb-4 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-1 uppercase tracking-wide">Fone TWS Premium Pro</h3>
+                <p class="text-gray-400 text-sm mb-4">Design intra-auricular com borrachinhas de silicone. Áudio espacial, graves potentes e isolamento acústico perfeito.</p>
+                <div class="mt-auto">
+                    <p class="text-gold font-bold text-2xl mb-3">R$ 199,90</p>
+                    <button onclick="addToCart('Fone TWS Premium Pro', 199.90, null)" class="w-full border-2 border-gold text-gold font-bold py-3 rounded-xl hover:bg-gold hover:text-black transition uppercase tracking-wide">
+                        Adicionar <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Fone TWS Padrão -->
+            <div class="bg-black/60 border border-gray-800 rounded-2xl p-5 flex flex-col hover:border-gold transition shadow-xl backdrop-blur-md">
+                <img src="https://images.unsplash.com/photo-1572569438065-809e07f6c38b?auto=format&fit=crop&q=80&w=600" alt="Fone TWS Confort" class="h-56 w-full object-cover rounded-xl mb-4 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-1 uppercase tracking-wide">Fone TWS Confort Gen</h3>
+                <p class="text-gray-400 text-sm mb-4">O formato clássico e extremamente confortável. Pareamento ultra rápido, comandos por toque e case com recarga wireless.</p>
+                <div class="mt-auto">
+                    <p class="text-gold font-bold text-2xl mb-3">R$ 149,90</p>
+                    <button onclick="addToCart('Fone TWS Confort Gen', 149.90, null)" class="w-full border-2 border-gold text-gold font-bold py-3 rounded-xl hover:bg-gold hover:text-black transition uppercase tracking-wide">
+                        Adicionar <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Headphone Bluetooth -->
+            <div class="bg-black/60 border border-gray-800 rounded-2xl p-5 flex flex-col hover:border-gold transition shadow-xl backdrop-blur-md">
+                <img src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&q=80&w=600" alt="Headphone Bluetooth Over-Ear" class="h-56 w-full object-cover rounded-xl mb-4 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-1 uppercase tracking-wide">Headphone Max Sound</h3>
+                <p class="text-gray-400 text-sm mb-4">Para quem exige o máximo. Espumas viscoelásticas, bateria para dias de uso e um palco sonoro inigualável.</p>
+                <div class="mt-auto">
+                    <p class="text-gold font-bold text-2xl mb-3">R$ 299,90</p>
+                    <button onclick="addToCart('Headphone Max Sound', 299.90, null)" class="w-full border-2 border-gold text-gold font-bold py-3 rounded-xl hover:bg-gold hover:text-black transition uppercase tracking-wide">
+                        Adicionar <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SEÇÃO DE PERFUMES ÁRABES -->
+        <div class="text-center mb-10 mt-10">
+            <h2 class="text-3xl font-bold text-white uppercase tracking-widest mb-4">Fragrâncias & <span class="text-gold">Perfumes Árabes</span></h2>
+            <p class="text-gray-300">Essências exclusivas, alta fixação e frascos luxuosos.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 max-w-5xl mx-auto">
+            
+            <!-- Perfume 1 -->
+            <div class="bg-black/60 border border-gray-800 rounded-2xl p-5 flex flex-col hover:border-gold transition shadow-xl backdrop-blur-md">
+                <img src="https://images.unsplash.com/photo-1594035987133-0d7d4260b795?auto=format&fit=crop&q=80&w=600" alt="Perfume Árabe Masculino" class="h-64 w-full object-cover rounded-xl mb-4 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-1 uppercase tracking-wide">Perfume Árabe Premium (Oud)</h3>
+                <p class="text-gray-400 text-sm mb-4">Notas marcantes de Oud, especiarias e couro. Alta projeção e fixação que dura o dia todo. O verdadeiro cheiro da riqueza e elegância.</p>
+                <div class="mt-auto">
+                    <p class="text-gold font-bold text-2xl mb-3">R$ 349,90</p>
+                    <button onclick="addToCart('Perfume Árabe Premium (Oud)', 349.90, null)" class="w-full border-2 border-gold text-gold font-bold py-3 rounded-xl hover:bg-gold hover:text-black transition uppercase tracking-wide">
+                        Adicionar <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Perfume 2 -->
+            <div class="bg-black/60 border border-gray-800 rounded-2xl p-5 flex flex-col hover:border-gold transition shadow-xl backdrop-blur-md">
+                <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&q=80&w=600" alt="Perfume Árabe Compartilhável" class="h-64 w-full object-cover rounded-xl mb-4 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-1 uppercase tracking-wide">Perfume Árabe Elegance (Âmbar)</h3>
+                <p class="text-gray-400 text-sm mb-4">Combinação luxuosa de baunilha, âmbar e madeiras nobres. Uma fragrância sedutora e inesquecível em um frasco de colecionador.</p>
+                <div class="mt-auto">
+                    <p class="text-gold font-bold text-2xl mb-3">R$ 399,90</p>
+                    <button onclick="addToCart('Perfume Árabe Elegance (Âmbar)', 399.90, null)" class="w-full border-2 border-gold text-gold font-bold py-3 rounded-xl hover:bg-gold hover:text-black transition uppercase tracking-wide">
+                        Adicionar <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+
+    </main>
+
+    <!-- Aba do Carrinho -->
+    <div id="cartDrawer" class="fixed top-0 right-0 h-full w-full sm:w-96 bg-gray-900 border-l border-gray-800 shadow-2xl transform translate-x-full transition-transform duration-300 z-50 flex flex-col">
+        <div class="p-5 border-b border-gray-800 flex justify-between items-center bg-black">
+            <h2 class="text-xl font-bold text-gold uppercase tracking-widest"><i class="fas fa-shopping-bag mr-2"></i> Seu Carrinho</h2>
+            <button onclick="toggleCart()" class="text-gray-400 hover:text-white text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <!-- Lista de Itens -->
+        <div id="cartItems" class="flex-grow p-5 overflow-y-auto">
+            <p class="text-gray-400 text-center mt-10">Seu carrinho está vazio.</p>
+        </div>
+
+        <!-- Rodapé do Carrinho -->
+        <div class="p-5 border-t border-gray-800 bg-black">
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-gray-300 font-medium">Total Estimado:</span>
+                <span id="cartTotal" class="text-2xl font-bold text-gold">R$ 0,00</span>
+            </div>
+            <button onclick="checkout()" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl transition shadow-[0_0_15px_rgba(34,197,94,0.4)] flex items-center justify-center gap-2 text-lg">
+                <i class="fab fa-whatsapp text-2xl"></i> Finalizar Compra
+            </button>
+        </div>
+    </div>
+
+    <!-- Aviso flutuante ao adicionar produto -->
+    <div id="toast" class="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-gray-800 border border-gold text-white px-6 py-3 rounded-full shadow-2xl transition-all duration-300 translate-y-[150%] opacity-0 z-50 flex items-center gap-3">
+        <i class="fas fa-info-circle text-gold"></i>
+        <span id="toast-msg" class="font-medium">Mensagem aqui</span>
+    </div>
+
+    <script>
+        // O número que você pediu
+        const WHATSAPP_NUMBER = "5511911068459";
+        let cart = [];
+
+        function toggleCart() {
+            const drawer = document.getElementById('cartDrawer');
+            drawer.classList.toggle('translate-x-full');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            
+            // Mostra o toast
+            toast.classList.remove('translate-y-[150%]', 'opacity-0');
+            
+            // Esconde após 3 segundos
+            setTimeout(() => {
+                toast.classList.add('translate-y-[150%]', 'opacity-0');
+            }, 3000);
+        }
+
+        function addToCart(name, price, selectId) {
+            let model = "";
+            
+            // Verifica se o produto exige a seleção de um modelo de iPhone
+            if (selectId) {
+                const select = document.getElementById(selectId);
+                if (!select.value) {
+                    showToast("⚠️ Por favor, selecione o modelo do iPhone antes de adicionar.");
+                    // Destacar o select
+                    select.classList.add('border-red-500');
+                    setTimeout(() => select.classList.remove('border-red-500'), 2000);
+                    return;
+                }
+                model = select.value;
+            }
+            
+            // Adiciona ao array do carrinho com um ID único
+            cart.push({ id: Date.now(), name, price, model });
+            updateCart();
+            showToast("✅ Produto adicionado ao carrinho!");
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCart();
+        }
+
+        function updateCart() {
+            const container = document.getElementById('cartItems');
+            const badge = document.getElementById('cartBadge');
+            const totalEl = document.getElementById('cartTotal');
+            
+            // Atualiza a bolinha vermelha
+            badge.innerText = cart.length;
+            if(cart.length > 0) {
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+            
+            // Limpa o visual do carrinho
+            container.innerHTML = "";
+            let total = 0;
+            
+            if (cart.length === 0) {
+                container.innerHTML = "<p class='text-gray-400 text-center mt-10'>Seu carrinho está vazio.</p>";
+            } else {
+                // Desenha cada item no carrinho
+                cart.forEach(item => {
+                    total += item.price;
+                    container.innerHTML += `
+                        <div class="flex justify-between items-center bg-gray-800 p-4 rounded-xl mb-3 border border-gray-700">
+                            <div>
+                                <p class="font-bold text-white">${item.name}</p>
+                                ${item.model ? `<p class="text-xs text-gray-400 mt-1"><i class="fas fa-mobile-alt mr-1"></i> ${item.model}</p>` : ''}
+                                <p class="text-gold text-sm font-bold mt-2">R$ ${item.price.toFixed(2).replace('.', ',')}</p>
+                            </div>
+                            <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-400 bg-red-500/10 h-10 w-10 rounded-full flex items-center justify-center transition">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                });
+            }
+            
+            // Atualiza o valor total
+            totalEl.innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                showToast("Seu carrinho está vazio! Adicione produtos primeiro.");
+                return;
+            }
+            
+            // Monta a mensagem para o WhatsApp
+            let text = "Olá, Faur Imports! Gostaria de finalizar meu pedido pelo site:\n\n";
+            let total = 0;
+            
+            cart.forEach(item => {
+                text += `▪️ ${item.name} ${item.model ? '(' + item.model + ')' : ''} - R$ ${item.price.toFixed(2).replace('.', ',')}\n`;
+                total += item.price;
+            });
+            
+            text += `\n*Valor Total: R$ ${total.toFixed(2).replace('.', ',')}*\n\nAguardo as instruções para pagamento e retirada!`;
+            
+            // Abre o WhatsApp com a mensagem pronta
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
